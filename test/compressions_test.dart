@@ -7,12 +7,12 @@ void main() {
     () {
       expect(
         InnoSetupCompression.range('zip', 1).toString(),
-        'zip/1',
+        'Compression=zip/1',
       );
 
       expect(
         InnoSetupCompression.range('zip', 9).toString(),
-        'zip/9',
+        'Compression=zip/9',
       );
 
       // Should cause assertion error because of range.
@@ -30,12 +30,12 @@ void main() {
     () {
       expect(
         compression.bzip(1).toString(),
-        'bzip/1',
+        'Compression=bzip/1',
       );
 
       expect(
         compression.bzip(9).toString(),
-        'bzip/9',
+        'Compression=bzip/9',
       );
 
       // Should cause assertion error because of range.
@@ -52,13 +52,13 @@ void main() {
       expect(
         InnoSetupCompression.level('lzma', InnoSetupCompressionLevel.fast)
             .toString(),
-        'lzma/fast',
+        'Compression=lzma/fast',
       );
 
       expect(
         InnoSetupCompression.level('lzma', InnoSetupCompressionLevel.ultra64)
             .toString(),
-        'lzma/ultra64',
+        'Compression=lzma/ultra64',
       );
     },
   );
@@ -68,12 +68,12 @@ void main() {
     () {
       expect(
         compression.lzma2(InnoSetupCompressionLevel.ultra64).toString(),
-        'lzma2/ultra64',
+        'Compression=lzma2/ultra64',
       );
 
       expect(
         compression.lzma2(InnoSetupCompressionLevel.normal).toString(),
-        'lzma2/normal',
+        'Compression=lzma2/normal',
       );
     },
   );

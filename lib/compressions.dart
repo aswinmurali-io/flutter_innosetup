@@ -65,7 +65,7 @@ class InnoSetupCompression {
   final String name;
 
   @override
-  String toString() => name;
+  String toString() => 'Compression=$name';
 }
 
 /// Contains multiple compression definitions for Inno Setup.
