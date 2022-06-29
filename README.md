@@ -1,1 +1,3 @@
-Make windows installer for flutter power
+# Flutter Inno Setup
+
+Make windows installer for flutter powered apps.
