@@ -1,0 +1,14 @@
+name: innosetup
+description: Make windows installer for flutter powered apps.
+version: 0.1.0
+homepage: https://github.com/aswinmurali-io/flutter_innosetup
+
+environment:
+  sdk: '>=2.18.0-168.0.dev <3.0.0'
+
+# dependencies:
+#   path: ^1.8.0
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.16.0
