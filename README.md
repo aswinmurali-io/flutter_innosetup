@@ -9,61 +9,81 @@ Run this command:
 With Dart:
 
 ```sh
- $ dart pub add innosetup
+dart pub add -d innosetup
 ```
 
 With Flutter:
 
 ```sh
- $ flutter pub add innosetup
+flutter pub add -d innosetup
 ```
 
 ## Simple Usage
 
 ```dart
-import 'dart:io';
-
-import 'package:innosetup/innosetup.dart';
-
-void main() {
-  InnoSetup(
-    name: const InnoSetupName('windows_installer'),
-    location: InnoSetupInstallerDirectory(Directory('build/windows')),
-    icon: InnoSetupIcon(File('assets/icon.ico')),
-  ).make();
-}
+InnoSetup(
+  app: InnoSetupApp(
+    name: 'Test App',
+    version: Version.parse('0.1.0'),
+    publisher: 'author',
+    urls: InnoSetupAppUrls(
+      homeUrl: Uri.parse('https://example.com/'),
+    ),
+  ),
+  files: InnoSetupFiles(
+    executable: File('build/windows/runner/test_app.exe'),
+    location: Directory('build/windows/runner'),
+  ),
+  name: const InnoSetupName('windows_installer'),
+  location: InnoSetupInstallerDirectory(
+    Directory('build/windows'),
+  ),
+  icon: InnoSetupIcon(
+    File('assets/icon.ico'),
+  ),
+).make();
 ```
 
 ## Advanced Usage
 
 ```dart
-import 'dart:io';
-
-import 'package:innosetup/innosetup.dart';
-
-void main() {
-  InnoSetup(
-    name: const InnoSetupName(
-      'windows_installer',
+InnoSetup(
+  name: const InnoSetupName(
+    'windows_installer',
+  ),
+  app: InnoSetupApp(
+    name: 'Test App',
+    version: Version.parse('0.1.0'),
+    publisher: 'author',
+    urls: InnoSetupAppUrls(
+      homeUrl: Uri.parse('https://example.com/home'),
+      publisherUrl: Uri.parse('https://example.com/author'),
+      supportUrl: Uri.parse('https://example.com/support'),
+      updatesUrl: Uri.parse('https://example.com/updates'),
     ),
-    location: InnoSetupInstallerDirectory(
-      Directory('build/windows'),
-    ),
-    icon: InnoSetupIcon(
-      File('assets/icon.ico'),
-    ),
-    compression: InnoSetupCompressions().lzma2(
-      InnoSetupCompressionLevel.ultra64,
-    ),
-    languages: InnoSetupLanguages().all,
-    license: InnoSetupLicense(
-      File('LICENSE'),
-    ),
-  ).make();
-}
+  ),
+  files: InnoSetupFiles(
+    executable: File('build/windows/runner/test_app.exe'),
+    location: Directory('build/windows/runner'),
+  ),
+  location: InnoSetupInstallerDirectory(
+    Directory('build/windows'),
+  ),
+  icon: InnoSetupIcon(
+    File('assets/icon.ico'),
+  ),
+  runAfterInstall: false,
+  compression: InnoSetupCompressions().lzma2(
+    InnoSetupCompressionLevel.ultra64,
+  ),
+  languages: InnoSetupLanguages().all,
+  license: InnoSetupLicense(
+    File('LICENSE'),
+  ),
+).make();
 ```
 
-## Setup
+## Source
 
 ```sh
 git clone https://github.com/aswinmurali-io/flutter_innosetup.git
