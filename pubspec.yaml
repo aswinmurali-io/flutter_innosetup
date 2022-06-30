@@ -1,6 +1,6 @@
 name: innosetup
-description: Make windows installer for flutter powered apps.
-version: 0.1.0
+description: Make windows installer for Flutter & vanilla Dart powered apps powered by Inno Setup.
+version: 0.1.1
 homepage: https://github.com/aswinmurali-io/flutter_innosetup
 
 environment:

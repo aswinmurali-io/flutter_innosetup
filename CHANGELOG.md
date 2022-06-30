@@ -1,3 +1,8 @@
+## 0.1.1
+
+- Examples now display in pub.dev.
+- Updates to proper dart package conventions.
+
 ## 0.1.0
 
 - Adds `runAfterInstall` option to launch app after installation.
