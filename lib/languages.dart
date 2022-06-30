@@ -135,3 +135,22 @@ class InnoSetupLanguages {
 
   final ukrainian = InnoSetupLanguage('ukrainian');
 }
+
+// ignore: public_member_api_docs
+class InnoSetupLanguagesBuilder {
+  // ignore: public_member_api_docs
+  const InnoSetupLanguagesBuilder(this._languages);
+
+  final List<InnoSetupLanguage>? _languages;
+
+  @override
+  String toString() {
+    final code = StringBuffer('[Languages]\n');
+
+    for (final lang in _languages ?? [InnoSetupLanguages().english]) {
+      code.writeln('$lang');
+    }
+
+    return '$code';
+  }
+}
