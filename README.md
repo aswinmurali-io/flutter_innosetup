@@ -1,6 +1,6 @@
 # Flutter Inno Setup
 
-Make windows installer for flutter powered apps.
+Make windows installer for Flutter & vanilla Dart powered apps powered by Inno Setup.
 
 ## Installing
 
