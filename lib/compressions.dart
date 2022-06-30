@@ -6,7 +6,7 @@ enum InnoSetupCompressionLevel {
   /// Normal compression.
   normal._('normal'),
 
-  /// Max compression (default).
+  /// Max compression.
   max._('max'),
 
   /// Ultra compression.

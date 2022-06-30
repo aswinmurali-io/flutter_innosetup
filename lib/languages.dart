@@ -52,7 +52,7 @@ class InnoSetupLanguages {
   static final _singleton = InnoSetupLanguages._();
 
   /// List of all languages.
-  List<InnoSetupLanguage> get values {
+  List<InnoSetupLanguage> get all {
     return [
       english,
       armenian,

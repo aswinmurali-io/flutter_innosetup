@@ -24,7 +24,7 @@ void main() {
   test('Checking all known language directive.', () {
     final languages = InnoSetupLanguages();
 
-    print(languages.values);
+    print(languages.all);
   });
 
   test('Custom Test language directive.', () {
