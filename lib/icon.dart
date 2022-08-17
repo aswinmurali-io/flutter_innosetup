@@ -29,6 +29,13 @@ class InnoSetupIconsBuilder {
   String toString() => '''
 [Icons]
 Name: "{autoprograms}\\${_app.name}"; Filename: "{app}\\${_app.name}"
-Name: "{autodesktop}\\${_app.name}"; Filename: "{app}\\${_app.name}"; Tasks: desktopicon
+Name: "{autodesktop}\\${_app.name}"; Filename: "{app}\\${_app.name}"
 ''';
+
+//   @override
+//   String toString() => '''
+// [Icons]
+// Name: "{autoprograms}\\${_app.name}"; Filename: "{app}\\${_app.name}"
+// Name: "{autodesktop}\\${_app.name}"; Filename: "{app}\\${_app.name}"; Tasks: desktopicon
+// ''';
 }

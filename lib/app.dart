@@ -30,6 +30,14 @@ class InnoSetupApp {
   ///
   /// Refer [InnoSetupAppUrls] for more info.
   final InnoSetupAppUrls urls;
+
+  @override
+  String toString() => '''
+AppName="$name"
+AppVersion="$version"
+$urls
+DefaultDirName="{autopf}\\$name"
+''';
 }
 
 /// Define [homeUrl] for the app with optional [publisherUrl], [supportUrl]
@@ -61,9 +69,9 @@ class InnoSetupAppUrls {
   // Use [homeUrl] as default url for optional urls.
   @override
   String toString() => '''
-AppPublisher=${homeUrl.path}
-AppPublisherURL=${publisherUrl ?? homeUrl.path}
-AppSupportURL=${updatesUrl ?? homeUrl.path}
-AppUpdatesURL=${supportUrl ?? homeUrl.path}
+AppPublisher="${homeUrl.path}"
+AppPublisherURL="${publisherUrl ?? homeUrl.path}"
+AppSupportURL="${updatesUrl ?? homeUrl.path}"
+AppUpdatesURL="${supportUrl ?? homeUrl.path}"
 ''';
 }

@@ -82,6 +82,7 @@ class InnoSetup {
   void make() {
     final iss = StringBuffer('''
 [Setup]
+$app
 $compression
 $icon
 $name
@@ -98,5 +99,7 @@ ${runAfterInstall ? InnoSetupRunBuilder(app) : ''}
 ''');
 
     File('innosetup.iss').writeAsStringSync('$iss');
+
+    Process.runSync('iscc', ['innosetup.iss']);
   }
 }
