@@ -1,3 +1,9 @@
+## 0.1.2
+
+- Fixes missing `InnoSetupApp` iscc code by adding `toString` implementation.
+- Fixes bug in `InnoSetupIconsBuilder`.
+- Calls `iscc` inno setup compiler after generating the script.
+
 ## 0.1.1
 
 - Examples now display in pub.dev.
