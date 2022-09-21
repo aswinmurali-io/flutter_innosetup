@@ -18,7 +18,9 @@ With Flutter:
 flutter pub add -d innosetup
 ```
 
-## Simple Usage
+## Usage
+
+Create a dart file in your project root directory to store the build instructions and type the below code.
 
 ```dart
 InnoSetup(
@@ -44,7 +46,15 @@ InnoSetup(
 ).make();
 ```
 
+Final step is to execute this build script by running this command:
+
+```bash
+dart build.dart
+```
+
 ## Advanced Usage
+
+For full customisation of the installer.
 
 ```dart
 InnoSetup(

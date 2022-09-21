@@ -79,7 +79,7 @@ class InnoSetup {
   final bool runAfterInstall;
 
   /// Make the Inno Setup script. (innosetup.iss)
-  void make() {
+  Future<void> make() async {
     final iss = StringBuffer('''
 [Setup]
 $app
@@ -98,8 +98,18 @@ ${InnoSetupIconsBuilder(app)}
 ${runAfterInstall ? InnoSetupRunBuilder(app) : ''}
 ''');
 
-    File('innosetup.iss').writeAsStringSync('$iss');
+    final buildDirectory = Directory("build");
+    
+    if (!await buildDirectory.exists()) {
+      await buildDirectory.create();
+    }
 
-    Process.runSync('iscc', ['innosetup.iss']);
+    File('build/innosetup.iss').writeAsStringSync('$iss');
+
+    await Process.start(
+      'iscc',
+      ['build/innosetup.iss'],
+      mode: ProcessStartMode.inheritStdio,
+    );
   }
 }

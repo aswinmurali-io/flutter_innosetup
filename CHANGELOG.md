@@ -1,3 +1,8 @@
+## 0.1.3
+
+- Fixes bug in `make` method in `InnoSetup`.
+- Improves README.
+
 ## 0.1.2
 
 - Fixes missing `InnoSetupApp` iscc code by adding `toString` implementation.
