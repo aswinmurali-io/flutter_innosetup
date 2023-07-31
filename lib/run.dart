@@ -10,6 +10,6 @@ class InnoSetupRunBuilder {
   @override
   String toString() => '''
 [Run]
-Filename: "{app}\\${_app.name}"; Description: "{cm:LaunchProgram,${_app.name}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\\${_app.executable}"; Description: "{cm:LaunchProgram,${_app.name}}"; Flags: nowait postinstall skipifsilent
 ''';
 }

@@ -10,6 +10,7 @@ void main() {
   InnoSetup(
     app: InnoSetupApp(
       name: 'Test App',
+      executable: 'test_app.exe',
       version: Version.parse('0.1.0'),
       publisher: 'author',
       urls: InnoSetupAppUrls(
@@ -38,6 +39,7 @@ void main() {
     ),
     app: InnoSetupApp(
       name: 'Test App',
+      executable: 'test_app.exe',
       version: Version.parse('0.1.0'),
       publisher: 'author',
       urls: InnoSetupAppUrls(

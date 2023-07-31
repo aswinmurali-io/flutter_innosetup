@@ -10,6 +10,7 @@ class InnoSetupApp {
   /// Refer [Version], [InnoSetupAppUrls] for more info.
   const InnoSetupApp({
     required this.name,
+    required this.executable,
     required this.version,
     required this.publisher,
     required this.urls,
@@ -17,6 +18,9 @@ class InnoSetupApp {
 
   /// Name of the app.
   final String name;
+
+  /// Name of the app executable file.
+  final String executable;
 
   /// Version of the app.
   ///
