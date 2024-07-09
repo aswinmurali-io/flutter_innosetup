@@ -38,6 +38,7 @@ void main() {
       'windows_installer',
     ),
     app: InnoSetupApp(
+      id: 'Test-App-123',
       name: 'Test App',
       executable: 'test_app.exe',
       version: Version.parse('0.1.0'),
@@ -48,6 +49,7 @@ void main() {
         supportUrl: Uri.parse('https://example.com/support'),
         updatesUrl: Uri.parse('https://example.com/updates'),
       ),
+      wizardStyle: InnoSetupWizardStyle.modern,
     ),
     files: InnoSetupFiles(
       executable: File('build/windows/runner/test_app.exe'),
@@ -59,9 +61,17 @@ void main() {
     icon: InnoSetupIcon(
       File('assets/icon.ico'),
     ),
+    privileges: InnoSetupPrivileges(
+      required: InnoSetupPrivilegeRequired.lowest,
+      overrideByCommandline: true,
+      overrideByDialog: true,
+    ),
     runAfterInstall: false,
-    compression: InnoSetupCompressions().lzma2(
+    desktopIcon: true,
+    compression: InnoSetupCompression.level(
+      'lzma2',
       InnoSetupCompressionLevel.ultra64,
+      solid: true,
     ),
     languages: InnoSetupLanguages().all,
     license: InnoSetupLicense(

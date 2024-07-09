@@ -31,7 +31,10 @@ class InnoSetupCompression {
   /// ```dart
   /// const none = InnoSetupCompression('none');  // -> 'none'
   /// ```
-  const InnoSetupCompression(this.name);
+  const InnoSetupCompression(
+    this.name, {
+    this.solid = false,
+  });
 
   /// Defines a compression with a [name] and possible [range].
   ///
@@ -40,12 +43,16 @@ class InnoSetupCompression {
   /// ```dart
   /// const zip = InnoSetupCompression.range('zip', 2);  // -> zip/2
   /// ```
-  factory InnoSetupCompression.range(String name, int range) {
+  factory InnoSetupCompression.range(
+    String name,
+    int range, {
+    bool solid = false,
+  }) {
     assert(
       range >= 1 && range <= 9,
       'Compression range must be in between 1 and 9.',
     );
-    return InnoSetupCompression('$name/$range');
+    return InnoSetupCompression('$name/$range', solid: solid);
   }
 
   /// Defines a compression with a [name] and possible [level].
@@ -57,15 +64,26 @@ class InnoSetupCompression {
   /// ```
   factory InnoSetupCompression.level(
     String name,
-    InnoSetupCompressionLevel level,
-  ) =>
-      InnoSetupCompression('$name/${level.value}');
+    InnoSetupCompressionLevel level, {
+    bool solid = false,
+  }) =>
+      InnoSetupCompression('$name/${level.value}', solid: solid);
 
   /// The compression name.
   final String name;
 
+  /// Solid Compression or not.
+  ///
+  /// Solid Compression causes all files to be compressed at once instead of separately.
+  /// This can result in a much greater overall compression ratio if your installation contains many files with common content, such as text files, especially if such common content files are grouped together within the [Files] section.
+  /// The disadvantage to using solid compression is that because all files are compressed into a single compressed stream, Setup can no longer randomly access the files. This can decrease performance.
+  final bool solid;
+
   @override
-  String toString() => 'Compression=$name';
+  String toString() => '''
+Compression=$name
+SolidCompression=${solid ? 'yes' : 'no'}
+''';
 }
 
 /// Contains multiple compression definitions for Inno Setup.

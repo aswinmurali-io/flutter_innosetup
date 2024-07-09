@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:innosetup/desktopicon.dart';
 import 'package:innosetup/innosetup.dart';
 
 /// Define name of the installer.
@@ -42,12 +43,14 @@ class InnoSetup {
   const InnoSetup({
     required this.icon,
     this.compression = InnoSetupCompressions.none,
+    this.privileges,
     this.languages,
     required this.name,
     required this.location,
     this.license,
     required this.app,
     required this.files,
+    this.desktopIcon = false,
     this.runAfterInstall = true,
   });
 
@@ -59,6 +62,9 @@ class InnoSetup {
 
   /// Compresssion used to pack the contents in the installer.
   final InnoSetupCompression compression;
+
+  /// Define the installer's privilege requirement and override behaviors.
+  final InnoSetupPrivileges? privileges;
 
   /// Language support for the installer.
   final List<InnoSetupLanguage>? languages;
@@ -75,21 +81,28 @@ class InnoSetup {
   /// Show license when installing.
   final InnoSetupLicense? license;
 
+  /// Asking create desktop icon or not
+  final bool desktopIcon;
+
   /// Run app after installing.
   final bool runAfterInstall;
 
   /// Make the Inno Setup script. (innosetup.iss)
-  Future<void> make() async {
+  Future<void> make({bool dry = false}) async {
     final iss = StringBuffer('''
 [Setup]
 $app
 $compression
+${privileges ?? ''}
 $icon
 $name
 $location
 ${license ?? ''}
 
 ${InnoSetupLanguagesBuilder(languages)}
+
+[Tasks]
+${desktopIcon ? const InnoSetupDesktopIconBuilder() : ''}
 
 $files
 
@@ -99,17 +112,19 @@ ${runAfterInstall ? InnoSetupRunBuilder(app) : ''}
 ''');
 
     final buildDirectory = Directory("build");
-    
+
     if (!await buildDirectory.exists()) {
       await buildDirectory.create();
     }
 
     File('build/innosetup.iss').writeAsStringSync('$iss');
 
-    await Process.start(
-      'iscc',
-      ['build/innosetup.iss'],
-      mode: ProcessStartMode.inheritStdio,
-    );
+    if (!dry) {
+      await Process.start(
+        'iscc',
+        ['build/innosetup.iss'],
+        mode: ProcessStartMode.inheritStdio,
+      );
+    }
   }
 }

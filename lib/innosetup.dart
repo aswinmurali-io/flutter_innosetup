@@ -6,5 +6,6 @@ export 'compressions.dart';
 export 'files.dart';
 export 'icon.dart';
 export 'languages.dart';
+export 'privileges.dart';
 export 'run.dart';
 export 'setup.dart';
